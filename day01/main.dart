@@ -1,10 +1,9 @@
 import "dart:io";
 
+final re = RegExp(r"(L|R)(\d+)");
+
 void part1(List<String> lines) {
   int sum = 0;
-
-  var re = RegExp(r"(L|R)(\d+)");
-
   int dial = 50;
 
   for (final l in lines) {
@@ -28,9 +27,6 @@ void part1(List<String> lines) {
 
 void part2(List<String> lines) {
   int sum = 0;
-
-  var re = RegExp(r"(L|R)(\d+)");
-
   int dial = 50;
 
   for (final l in lines) {
