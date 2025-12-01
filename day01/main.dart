@@ -16,14 +16,7 @@ void part1(List<String> lines) {
     final dir = match.group(1)!;
     final step = int.parse(match.group(2)!);
 
-    if (dir == 'R') {
-      current += step;
-    } else {
-      current -= step;
-    }
-    if (current < 0) {
-      current += 100;
-    }
+    current += (dir == 'R') ? step : -step;
     current %= 100;
 
     if (current == 0) {
