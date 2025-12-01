@@ -42,26 +42,16 @@ void part2(List<String> lines) {
     final dir = match.group(1)!;
     final step = int.parse(match.group(2)!);
 
-    if (dir == 'R') {
-      for (var i = 0; i < step; i++) {
-        current++;
-        if (current == 100) {
-          sum++;
-          current = 0;
-        }
+    // inefficent but gives correct result
+    // it would be better to use no loop and instead divisions and modulo,
+    // when trying there was problem with negative numbers (maybe off-by-1 problem)
+    for (int i = 0; i < step; i++) {
+      current += (dir == 'R') ? 1 : -1;
+      current %= 100;
+
+      if (current == 0) {
+        sum++;
       }
-    } else if (dir == 'L') {
-      for (var i = 0; i < step; i++) {
-        current--;
-        if (current == -1) {
-          current = 99;
-        }
-        if (current == 0) {
-          sum++;
-        }
-      }
-    } else {
-      print("Invalid direction $dir");
     }
   }
   print("Part 2: $sum");
