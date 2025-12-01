@@ -5,7 +5,7 @@ void part1(List<String> lines) {
 
   var re = RegExp(r"(L|R)(\d+)");
 
-  int current = 50;
+  int dial = 50;
 
   for (final l in lines) {
     final match = re.firstMatch(l);
@@ -16,10 +16,10 @@ void part1(List<String> lines) {
     final dir = match.group(1)!;
     final step = int.parse(match.group(2)!);
 
-    current += (dir == 'R') ? step : -step;
-    current %= 100;
+    dial += (dir == 'R') ? step : -step;
+    dial %= 100;
 
-    if (current == 0) {
+    if (dial == 0) {
       sum++;
     }
   }
@@ -31,7 +31,7 @@ void part2(List<String> lines) {
 
   var re = RegExp(r"(L|R)(\d+)");
 
-  int current = 50;
+  int dial = 50;
 
   for (final l in lines) {
     final match = re.firstMatch(l);
@@ -46,10 +46,10 @@ void part2(List<String> lines) {
     // it would be better to use no loop and instead divisions and modulo,
     // when trying there was problem with negative numbers (maybe off-by-1 problem)
     for (int i = 0; i < step; i++) {
-      current += (dir == 'R') ? 1 : -1;
-      current %= 100;
+      dial += (dir == 'R') ? 1 : -1;
+      dial %= 100;
 
-      if (current == 0) {
+      if (dial == 0) {
         sum++;
       }
     }
