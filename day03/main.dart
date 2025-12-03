@@ -24,6 +24,14 @@ void part1(List<String> lines) {
   print("Part 1: $sum");
 }
 
+(int, int) indexedMax((int, int) left, (int, int) right) {
+  if (left.$2 >= right.$2) {
+    return left;
+  } else {
+    return right;
+  }
+}
+
 void part2(List<String> lines) {
   int sum = 0;
   for (var l in lines) {
@@ -33,15 +41,15 @@ void part2(List<String> lines) {
 
     List<int> digits = List<int>.generate(l.length, (i) => int.parse(l[i]));
 
+    // Select a range from start to end and search for the largest digit there.
+    // The next range starts after this digit. The end of the range has room for
+    // the remaining digits.
     int result = 0;
     int start = 0;
     for (int i = 0; i < 12; i++) {
       int end = digits.length - (12 - i) + 1;
       final range = digits.sublist(start, end);
-
-      // FIXME try it with indexed and fold with custom max
-      int maxDigit = range.reduce(max);
-      int maxIdx = range.indexOf(maxDigit);
+      final (maxIdx, maxDigit) = range.indexed.reduce(indexedMax);
 
       result = result * 10 + maxDigit;
 
